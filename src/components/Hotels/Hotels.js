@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import hotels from "../fakeData/hotelData";
+import Map from "./Map";
 
 const Hotels = () => {
   const [hotel, setHotel] = useState([]);
@@ -32,10 +33,14 @@ const Hotels = () => {
       <div>
         {hotel.map((elem) => (
           <div>
+            <img src={elem.img} alt="" style={{ width: "400px" }} />
             <h4>{elem.title}</h4>
             <p>{elem.description}</p>
+            <p>Reviews: {elem.star}</p>
+            <p>Price: {elem.price}</p>
           </div>
         ))}
+        <Map></Map>
       </div>
     </>
   );

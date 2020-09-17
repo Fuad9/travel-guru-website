@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import icon from "../../images/Icon/calender_icon.png";
 
 const Booking = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const styles = {
     width: "22em",
     heigth: "22em",
@@ -37,6 +41,24 @@ const Booking = () => {
           </Button>
         </Link>
       </Form>
+      <h5>
+        From:{" "}
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd-MM-yyyy"
+          minDate={new Date()}
+        />
+      </h5>
+      <h5>
+        To:{" "}
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd-MM-yyyy"
+          minDate={new Date()}
+        />
+      </h5>
     </div>
   );
 };

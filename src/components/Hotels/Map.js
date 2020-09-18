@@ -33,7 +33,7 @@ const Map = () => {
         <input
           onKeyUp={handleSearch}
           type="text"
-          placeholder="Search by place name"
+          placeholder="Find your place on Map"
         />
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAnEvfM0IngnOKFwIYceNYpLWIQk5vYeaw" }}

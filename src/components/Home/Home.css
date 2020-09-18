@@ -1,0 +1,11 @@
+.home {
+  background-color: #a5ace4;
+  color: #fff;
+  background-image: url("../../images/Image/backGround.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  height: 400vh;
+  width: 100%;
+}

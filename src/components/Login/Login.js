@@ -34,7 +34,7 @@ const Login = () => {
     if (e.target.name === "email") {
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
     }
-    if (e.target.value === "password") {
+    if (e.target.name === "password") {
       const isPasswordValid = e.target.value.length > 6;
       const passwordHasNumber = /\d{1}/.test(e.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
@@ -48,7 +48,6 @@ const Login = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log(user.email, user.password);
     if (user.email && user.password) {
       firebase
         .auth()

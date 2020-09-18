@@ -1,10 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { Container, Card, CardGroup, Carousel, Col } from "react-bootstrap";
+import { Container, Carousel, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import backGround from "../../images/Image/backGround.png";
 import sreemangal from "../../images/Image/Sreemongol1.png";
 import sundarban from "../../images/Image/sundorbon.png";
+import "./Home.css";
 
 const Home = () => {
   const styles = {
@@ -15,13 +16,10 @@ const Home = () => {
       borderRadius: "10%",
     },
     cardImg: {
-      width: "15em",
+      width: "100%",
       height: "20em",
       border: "2px solid yellow",
       borderRadius: "10%",
-    },
-    cardBorder: {
-      border: "none",
     },
   };
 
@@ -37,7 +35,7 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className="home">
       <Carousel style={styles.carouselImg} className={classes.root}>
         <Carousel.Item>
           <Link to="/place/cox'sBazar">
@@ -79,70 +77,71 @@ const Home = () => {
           </Link>
         </Carousel.Item>
       </Carousel>
-      <Container>
-        <CardGroup>
-          <Col sm={12} xs={12} md={4}>
-            <Card style={styles.cardBorder}>
-              <Link to="/place/cox'sBazar">
-                <Card.Img
-                  style={styles.cardImg}
-                  variant="top"
-                  src={backGround}
-                />
-                <Card.Body>
-                  <Card.Title>Cox's Bazar'</Card.Title>
-                  <Card.Text>
-                    Cox's Bazar is a city, fishing port, tourism centre and
-                    district headquarters in southeastern Bangladesh. It is
-                    famous mostly for its long natural sandy beach...
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
-          </Col>
-          <Col sm={12} xs={12} md={4}>
-            <Card style={styles.cardBorder}>
-              <Link to="/place/sreemangal">
-                <Card.Img
-                  style={styles.cardImg}
-                  variant="top"
-                  src={sreemangal}
-                />
-                <Card.Body>
-                  <Card.Title>Sreemangal</Card.Title>
-                  <Card.Text>
-                    Madhobpur Lake is one of the main tourist attractions in the
-                    area, and is home to the Great White-Bellied Heron, the only
-                    confirmed site in Bangladesh. The Baikka beel is also a...{" "}
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
-          </Col>
-          <Col sm={12} xs={12} md={4}>
-            <Card style={styles.cardBorder}>
-              <Link to="/place/sundarban">
-                <Card.Img
-                  style={styles.cardImg}
-                  variant="top"
-                  src={sundarban}
-                />
-                <Card.Body>
-                  <Card.Title>Sundarban</Card.Title>
-                  <Card.Text>
-                    The Sundarbans is a mangrove area in the delta formed by the
-                    confluence of the Ganges, Brahmaputra and Meghna Rivers in
-                    the Bay of Bengal. It spans from the Hooghly River in
-                    India's state of West Bengal to the Baleswar River in
-                    Bangladesh. It comprises closed and open mangrove...
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
-          </Col>
-        </CardGroup>
+      <Container className="d-flex">
+        <Col xs={4} md={4}>
+          <div>
+            <Link to="/place/cox'sBazar">
+              <img
+                style={styles.cardImg}
+                variant="top"
+                src={backGround}
+                alt=""
+              />
+            </Link>
+            <div>
+              <h4>Cox's Bazar'</h4>
+              <p>
+                Cox's Bazar is a city, fishing port, tourism centre and district
+                headquarters in southeastern Bangladesh. It is famous mostly for
+                its long natural sandy beach...
+              </p>
+            </div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div>
+            <Link to="/place/sreemangal">
+              <img
+                style={styles.cardImg}
+                variant="top"
+                src={sreemangal}
+                alt=""
+              />
+            </Link>
+            <div>
+              <h4>Sreemangal</h4>
+              <p>
+                Madhobpur Lake is one of the main tourist attractions in the
+                area, and is home to the Great White-Bellied Heron, the only
+                confirmed site in Bangladesh. The Baikka beel is also a...{" "}
+              </p>
+            </div>
+          </div>
+        </Col>
+        <Col xs={4} md={4}>
+          <div>
+            <Link to="/place/sundarban">
+              <img
+                style={styles.cardImg}
+                variant="top"
+                src={sundarban}
+                alt=""
+              />
+            </Link>
+            <div>
+              <h4>Sundarban</h4>
+              <p>
+                The Sundarbans is a mangrove area in the delta formed by the
+                confluence of the Ganges, Brahmaputra and Meghna Rivers in the
+                Bay of Bengal. It spans from the Hooghly River in India's state
+                of West Bengal to the Baleswar River in Bangladesh. It comprises
+                closed and open mangrove...
+              </p>
+            </div>
+          </div>
+        </Col>
       </Container>
-    </>
+    </div>
   );
 };
 

@@ -27,7 +27,7 @@ const Signup = () => {
     if (e.target.name === "email") {
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
     }
-    if (e.target.value === "password") {
+    if (e.target.name === "password" && e.target.name === "confirmPassword") {
       const isPasswordValid = e.target.value.length > 6;
       const passwordHasNumber = /\d{1}/.test(e.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
@@ -41,7 +41,6 @@ const Signup = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log(user.email, user.password);
     if (user.email && user.password) {
       firebase
         .auth()
@@ -63,23 +62,6 @@ const Signup = () => {
     }
     setValidated(true);
   };
-
-  // // will handle latter
-  // const handleSignOut = () => {
-  //   firebase
-  //     .auth()
-  //     .signOut()
-  //     .then((res) => {
-  //       const signedOutUser = {
-  //         isSignedIn: false,
-  //         name: "",
-  //         email: "",
-  //         error: "",
-  //         success: false,
-  //       };
-  //       setUser(signedOutUser);
-  //     });
-  // };
 
   // to update use profile
   const updateUserName = (name) => {
@@ -159,7 +141,7 @@ const Signup = () => {
             required
             onBlur={handleBlur}
             type="password"
-            name="password"
+            name="confirmPassword"
             placeholder="Confirm Password"
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

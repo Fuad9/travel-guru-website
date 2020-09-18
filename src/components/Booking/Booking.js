@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import icon from "../../images/Icon/calender_icon.png";
 
 const Booking = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startingDate, setStartingDate] = useState(null);
+  const [endingDate, setEndingDate] = useState(null);
 
   const styles = {
     width: "22em",
@@ -24,16 +25,38 @@ const Booking = () => {
           <Form.Label>Destination</Form.Label>
           <Form.Control type="text" />
         </Form.Group>
-        <Row>
+        <Col>
           <Col style={{ display: "flex" }}>
             <img src={icon} alt="" />
-            <Form.Control placeholder="Starting Date" />
+            <h5>
+              Starting Date:{" "}
+              <DatePicker
+                selected={startingDate}
+                onChange={(date) => setStartingDate(date)}
+                dateFormat="dd-MM-yyyy"
+                minDate={new Date()}
+                isClearable
+                showYearDropdown
+                scrollableMonthYearDropdown
+              />
+            </h5>
           </Col>
           <Col style={{ display: "flex" }}>
             <img src={icon} alt="" />
-            <Form.Control placeholder="Ending Date" />
+            <h5>
+              Ending Date:{" "}
+              <DatePicker
+                selected={endingDate}
+                onChange={(date) => setEndingDate(date)}
+                dateFormat="dd-MM-yyyy"
+                minDate={new Date()}
+                isClearable
+                showYearDropdown
+                scrollableMonthYearDropdown
+              />
+            </h5>
           </Col>
-        </Row>
+        </Col>
         <br />
         <Link to="/hotels">
           <Button variant="warning" type="submit" style={{ width: "22em" }}>
@@ -41,24 +64,6 @@ const Booking = () => {
           </Button>
         </Link>
       </Form>
-      <h5>
-        From:{" "}
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          dateFormat="dd-MM-yyyy"
-          minDate={new Date()}
-        />
-      </h5>
-      <h5>
-        To:{" "}
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          dateFormat="dd-MM-yyyy"
-          minDate={new Date()}
-        />
-      </h5>
     </div>
   );
 };

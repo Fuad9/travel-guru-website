@@ -6,7 +6,7 @@ import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <Navbar bg="light" expand="md">
+    <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/home">
         <img src={logo} alt="" className="w-25" />
       </Navbar.Brand>
@@ -19,9 +19,9 @@ const NavBar = () => {
             className="ml-sm-2"
           />
         </Form>
-        <Nav className="ml-auto">
+        <Nav className="ml-auto pr-3">
           <Link to="/news">News</Link>
-          <Link to="/destination">Destination</Link>
+          <Link to="/hotels">Destination</Link>
           <Link to="/blog">Blog</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/login">

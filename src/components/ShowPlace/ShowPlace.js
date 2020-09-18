@@ -11,7 +11,7 @@ const ShowPlace = () => {
   return (
     <div>
       <h4>{place.title}</h4>
-      <p>{place.about}</p>
+      <p>{place.description}</p>
       <Link to="/booking">
         <Button variant="warning">Booking</Button>
       </Link>

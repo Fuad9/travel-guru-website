@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
 import hotels from "../fakeData/hotelData";
 import Map from "./Map";
 
@@ -16,30 +15,27 @@ const Hotels = () => {
         item.title.toLowerCase().includes(searchText)
     );
     setHotel(matched);
-    console.log(hotel);
   };
 
   return (
     <>
-      <div>
-        <h4>last page</h4>
-        <h4>Here shows hotels and map</h4>
-        <input
-          onKeyUp={handleSearch}
-          type="text"
-          placeholder="Search your hotel by place name"
-        />
-      </div>
-      <div>
-        {hotel.map((elem) => (
-          <div>
-            <img src={elem.img} alt="" style={{ width: "400px" }} />
-            <h4>{elem.title}</h4>
-            <p>{elem.description}</p>
-            <p>Reviews: {elem.star}</p>
-            <p>Price: {elem.price}</p>
-          </div>
-        ))}
+      <div style={{ display: "flex" }}>
+        <div className="w-50">
+          <input
+            onKeyUp={handleSearch}
+            type="text"
+            placeholder="Search your hotel by place name"
+          />
+          {hotel.map((elem) => (
+            <div>
+              <img src={elem.img} alt="" style={{ width: "400px" }} />
+              <h4>{elem.title}</h4>
+              <p>{elem.description}</p>
+              <p>Reviews: {elem.star}</p>
+              <p>Price: {elem.price}</p>
+            </div>
+          ))}
+        </div>
         <Map></Map>
       </div>
     </>

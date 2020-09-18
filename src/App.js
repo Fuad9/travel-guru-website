@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Destination from "./components/Destination/Destination";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import NavBar from "./components/NavBar/NavBar";
@@ -43,9 +42,6 @@ function App() {
             </PrivateRoute>
             <Route path="/news">
               <News></News>
-            </Route>
-            <Route path="/destination">
-              <Destination></Destination>
             </Route>
             <Route exact path="/">
               <Home></Home>

@@ -13,9 +13,6 @@ if (firebase.apps.length === 0) {
 const Signup = () => {
   const [validated, setValidated] = useState(false);
 
-  // to create new user
-  const [newUser, setNewUser] = useState(false);
-
   const [user, setUser] = useState({
     isSignedIn: false,
     name: "",
@@ -49,12 +46,13 @@ const Signup = () => {
       firebase
         .auth()
         .createUserWithEmailAndPassword(user.email, user.password)
-        .then((res) => {
+        .then(() => {
           const newUserInfo = { ...user };
           newUserInfo.error = "";
           newUserInfo.success = true;
           setUser(newUserInfo);
           updateUserName(user.name);
+          verifyEmail();
         })
         .catch((error) => {
           const newUserInfo = { ...user };
@@ -96,6 +94,20 @@ const Signup = () => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const verifyEmail = () => {
+    const user = firebase.auth().currentUser;
+
+    user
+      .sendEmailVerification()
+      .then(() => {
+        console.log("verification email sent successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.message);
       });
   };
 

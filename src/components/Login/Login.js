@@ -16,7 +16,6 @@ const Login = () => {
 
   const [user, setUser] = useState({
     isSignedIn: false,
-    newUser: "",
     name: "",
     email: "",
     password: "",
@@ -25,6 +24,7 @@ const Login = () => {
 
   // context api
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
   const history = useHistory();
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -53,7 +53,7 @@ const Login = () => {
       firebase
         .auth()
         .signInWithEmailAndPassword(user.email, user.password)
-        .then((res) => {
+        .then(() => {
           const newUserInfo = { ...user };
           newUserInfo.error = "";
           newUserInfo.success = true;
@@ -84,6 +84,20 @@ const Login = () => {
           success: false,
         };
         setUser(signedOutUser);
+      });
+  };
+
+  const resetPassword = (email) => {
+    const auth = firebase.auth();
+
+    auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        console.log("password reset email sent successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.message);
       });
   };
 
@@ -122,12 +136,15 @@ const Login = () => {
           </Button>
         )}
       </Form>
+      <Button variant="warning" onClick={resetPassword(user.email)}>
+        Forgot your password?
+      </Button>
       <p className="text-danger">{user.error}</p>
       {user.success && (
         <p className="text-success">You have logged in successfully</p>
       )}
       <h5>
-        Don't have an account?<Link to="/signup">Create an account</Link>
+        Don't have an account?<Link to="/signup">Create a new one</Link>
       </h5>
       <Auth></Auth>
     </div>

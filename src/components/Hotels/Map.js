@@ -1,28 +1,48 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import places from "../fakeData/places";
 
-class Map extends Component {
-  static defaultProps = {
+const Map = () => {
+  const [place, setPlace] = useState({});
+
+  // search event listener
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchText = event.target.value.toLowerCase();
+    const matched = places.find(
+      (item) =>
+        item.id.toLowerCase().includes(searchText) ||
+        item.title.toLowerCase().includes(searchText)
+    );
+    setPlace(matched);
+  };
+
+  const { lat, long } = place;
+
+  const geoLocation = {
     center: {
-      lat: 24.3083,
-      lng: 91.7333,
+      lat: lat,
+      lng: long,
     },
     zoom: 11,
   };
 
-  render() {
-    return (
-      // Important! Always set the container height explicitly
+  return (
+    <>
       <div style={{ height: "500px", width: "800px" }}>
+        <input
+          onKeyUp={handleSearch}
+          type="text"
+          placeholder="Search by place name"
+        />
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAnEvfM0IngnOKFwIYceNYpLWIQk5vYeaw" }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
+          center={geoLocation.center}
+          defaultZoom={geoLocation.zoom}
         ></GoogleMapReact>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default Map;

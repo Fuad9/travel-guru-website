@@ -1,33 +1,52 @@
 import React, { useState } from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Form as input, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from "../Login/firebase.config";
-import Auth from "../Login/Auth";
+import firebaseConfig from "../Auth/firebase.config";
+import Signin from "../Auth/Signin";
+import { useForm } from "react-hook-form";
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
 const Signup = () => {
-  const [validated, setValidated] = useState(false);
+  const { register, handleSubmit, errors } = useForm();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [user, setUser] = useState({
     isSignedIn: false,
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     error: "",
     success: false,
   });
 
-  const handleBlur = (e) => {
+  const onChangeHandler = (e) => {
     let isFieldValid = true;
-    if (e.target.name === "email") {
+    const { name, value: defaultValue } = e.target;
+    if (name === "name") {
+      setName(defaultValue);
+    }
+    if (name === "email") {
+      setEmail(defaultValue);
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
     }
-    if (e.target.name === "password" && e.target.name === "confirmPassword") {
+    if (name === "password") {
+      setPassword(defaultValue);
+      const isPasswordValid = e.target.value.length > 6;
+      const passwordHasNumber = /\d{1}/.test(e.target.value);
+      isFieldValid = isPasswordValid && passwordHasNumber;
+    }
+    if (name === "confirmPassword") {
+      setConfirmPassword(defaultValue);
       const isPasswordValid = e.target.value.length > 6;
       const passwordHasNumber = /\d{1}/.test(e.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
@@ -40,8 +59,7 @@ const Signup = () => {
   };
 
   const handleSignUp = (e) => {
-    e.preventDefault();
-    if (user.email && user.password) {
+    if (password === confirmPassword) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(user.email, user.password)
@@ -59,14 +77,14 @@ const Signup = () => {
           newUserInfo.success = false;
           setUser(newUserInfo);
         });
+    } else {
+      alert("password didn't match, please try again");
     }
-    setValidated(true);
   };
 
   // to update use profile
   const updateUserName = (name) => {
     const user = firebase.auth().currentUser;
-
     user
       .updateProfile({
         displayName: name,
@@ -94,77 +112,87 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <Form noValidate validated={validated} onSubmit={handleSignUp}>
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Control
-            required
-            onBlur={handleBlur}
+    <div className="container">
+      <form onSubmit={handleSubmit(handleSignUp)}>
+        <div className="inputBox">
+          <input
+            ref={register({ required: true })}
+            onBlur={onChangeHandler}
             type="text"
             name="name"
+            defaultValue={name}
             placeholder="First Name"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Control
-            required
-            onBlur={handleBlur}
+          {errors.name && <span className="text-danger">Name is required</span>}
+          <label htmlFor="name">First Name</label>
+        </div>
+        <div className="inputBox">
+          <input
+            onBlur={onChangeHandler}
             type="text"
             name="name"
+            defaultValue={name}
             placeholder="Last Name"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom03">
-          <Form.Control
-            required
-            onBlur={handleBlur}
+          <label htmlFor="name">Last Name</label>
+        </div>
+        <div className="inputBox">
+          <input
+            ref={register({ required: true })}
+            onBlur={onChangeHandler}
             type="email"
             name="email"
+            defaultValue={email}
             placeholder="Username or Email"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom04">
-          <Form.Control
-            required
-            onBlur={handleBlur}
+          {errors.email && (
+            <span className="text-danger">Email is required</span>
+          )}
+          <label htmlFor="email">Email</label>
+        </div>
+        <div className="inputBox">
+          <input
+            ref={register({ required: true })}
+            onBlur={onChangeHandler}
             type="password"
             name="password"
+            defaultValue={password}
             placeholder="Enter Your Password"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom05">
-          <Form.Control
-            required
-            onBlur={handleBlur}
+          {errors.password && (
+            <span className="text-danger">Password is required</span>
+          )}
+          <label htmlFor="password">Password</label>
+        </div>
+        <div className="inputBox">
+          <input
+            ref={register({ required: true })}
+            onBlur={onChangeHandler}
             type="password"
             name="confirmPassword"
+            defaultValue={confirmPassword}
             placeholder="Confirm Password"
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group>
-          <Form.Check
-            required
-            label="Agree to terms and conditions"
-            feedback="You must agree before submitting."
-          />
-        </Form.Group>
-        <Button type="submit">Signup</Button>
-      </Form>
-      <p className="text-danger">{user.error}</p>
-      {user.success && (
-        <p className="text-success">
-          Account Created successfully, you can now login
-        </p>
-      )}
-      <h5>
-        Already have an account?<Link to="/login">Login</Link>
-      </h5>
-      <Auth></Auth>
+          {errors.confirmPassword && (
+            <span className="text-danger">
+              Please confirm your password before submitting
+            </span>
+          )}
+          <label htmlFor="confirmPassword">Confirm Password</label>
+        </div>
+
+        <input type="submit" value="Signup" />
+        <p className="text-danger">{user.error}</p>
+        {user.success && (
+          <p className="text-success">
+            Account Created successfully, you can now login
+          </p>
+        )}
+        <h5>
+          Already have an account?<Link to="/login">Login</Link>
+        </h5>
+        <Signin></Signin>
+      </form>
     </div>
   );
 };

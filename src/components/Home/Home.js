@@ -1,7 +1,5 @@
 import React, { createContext, useState } from "react";
 import Card from "../Card/Card";
-import { Link } from "react-router-dom";
-import data from "../fakeData/data";
 import places from "../fakeData/places";
 import "./Home.css";
 import arrowLeft from "../../images/Icon/arrowLeft.png";
@@ -41,6 +39,22 @@ const Home = () => {
               <ShowPlace />
             </div>
             <div className="home col-10 col-lg-5">
+              <div>
+                <button
+                  onClick={() => prevProperty()}
+                  disabled={property.index === 0}
+                  style={{ borderRadius: "50%", outline: "none" }}
+                >
+                  <img style={{ width: "30px" }} src={arrowLeft} alt="" />
+                </button>
+                <button
+                  onClick={nextProperty}
+                  disabled={property.index === places.length - 1}
+                  style={{ borderRadius: "50%", outline: "none" }}
+                >
+                  <img style={{ width: "30px" }} src={arrowRight} alt="" />
+                </button>
+              </div>
               <div className="page">
                 <div className="col">
                   <div
@@ -60,22 +74,6 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div style={{ marginTop: "60px" }}>
-                <button
-                  onClick={() => prevProperty()}
-                  disabled={property.index === 0}
-                  style={{ borderRadius: "50%", outline: "none" }}
-                >
-                  <img style={{ width: "30px" }} src={arrowLeft} alt="" />
-                </button>
-                <button
-                  onClick={nextProperty}
-                  disabled={property.index === places.length - 1}
-                  style={{ borderRadius: "50%", outline: "none" }}
-                >
-                  <img style={{ width: "30px" }} src={arrowRight} alt="" />
-                </button>
               </div>
             </div>
           </div>

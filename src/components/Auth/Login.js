@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import google from "../../images/Icon/google.png";
 import fb from "../../images/Icon/fb.png";
 
-const Login = () => {
+export const Login = () => {
   const [newUser, setNewUser] = useState(false);
   const { register, handleSubmit, errors } = useForm();
 
@@ -110,6 +110,7 @@ const Login = () => {
   const handleSignIn = () => {
     signInWithEmailAndPassword(user.email, user.password).then((res) => {
       handleResponse(res, true);
+      console.log(res.displayName);
     });
   };
 

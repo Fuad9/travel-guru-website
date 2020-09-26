@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  padding: 0 0 100px 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: sans-serif;
   overflow-x: hidden;
 }
@@ -83,7 +84,7 @@ body {
 }
 
 .col {
-  height: 320px;
+  height: 550px;
   margin-top: 50px;
   position: relative;
 }
@@ -92,7 +93,7 @@ body {
   content: "";
   display: block;
   width: 50%;
-  height: 120%;
+  height: 100%;
   /* background: linear-gradient(to right, white 25%, rgba(255, 255, 255, 0) 70%); */
   position: absolute;
   top: 0;

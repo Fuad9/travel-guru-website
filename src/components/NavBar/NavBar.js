@@ -3,10 +3,22 @@ import { Button, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { UserContext } from "../../App";
 import logo from "../../images/Logo.png";
+import {
+  handleGoogleSignIn,
+  initializeLoginFramework,
+} from "../Auth/loginManager";
 import "./NavBar.css";
 
 const NavBar = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  initializeLoginFramework();
+
+  const handleSignIn = () => {
+    handleGoogleSignIn().then((res) => {
+      setLoggedInUser(res);
+    });
+  };
 
   const handleSlide = () => {
     document.querySelector(".nav-links").classList.toggle("nav-active");
@@ -26,35 +38,62 @@ const NavBar = () => {
     <nav>
       <div className="logo">
         <Link to="/home">
-          <img src={logo} alt="" style={{ width: "100px" }} />
+          <img src={logo} alt="" style={{ width: "120px" }} />
         </Link>
       </div>
       <ul className="nav-links">
         <li>
-          <Link to="/news" style={{ textDecoration: "none" }}>
+          <Link to="/news" style={{ textDecoration: "none", color: "white" }}>
             News
           </Link>
         </li>
         <li>
-          <Link to="/destination" style={{ textDecoration: "none" }}>
+          <Link
+            to="/destination"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             Destination
           </Link>
         </li>
         <li>
-          <Link to="/blog" style={{ textDecoration: "none" }}>
+          <Link to="/blog" style={{ textDecoration: "none", color: "white" }}>
             Blog
           </Link>
         </li>
         <li>
-          <Link to="/contact" style={{ textDecoration: "none" }}>
+          <Link
+            to="/contact"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             Contact
           </Link>
         </li>
-        <li>
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            Login
-          </Link>
-        </li>
+        {!loggedInUser ? (
+          <li>
+            <button
+              onClick={handleSignIn}
+              style={{
+                textDecoration: "none",
+                color: "white",
+                background: "#03a9f4",
+                outline: "none",
+              }}
+            >
+              Login
+            </button>
+          </li>
+        ) : (
+          <>
+            <li style={{ color: "white" }}>{loggedInUser.name}</li>
+            <li>
+              <img
+                style={{ width: "80px", borderRadius: "50%" }}
+                src={loggedInUser.photo}
+                alt=""
+              />
+            </li>
+          </>
+        )}
       </ul>
       <div className="nav-menu" onClick={handleSlide}>
         <div className="link1"></div>

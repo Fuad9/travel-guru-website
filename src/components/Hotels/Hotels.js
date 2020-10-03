@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useParams } from "react-router-dom";
+import start from "../../images/Icon/star_1_.png";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -83,11 +84,11 @@ const Hotels = () => {
                 <CardHeader title={hotel.title} />
                 <CardMedia className={classes.media} image={hotel.img} />
                 <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
+                  <img src={start} alt="" />
                   <Typography>{hotel.star}</Typography>
-                  <Typography>Price: ${hotel.price}</Typography>
+                  <Typography className="ml-auto">
+                    ${hotel.price} per night
+                  </Typography>
                   <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,

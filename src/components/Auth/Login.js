@@ -15,7 +15,7 @@ import google from "../../images/Icon/google.png";
 import fb from "../../images/Icon/fb.png";
 
 export const Login = () => {
-  const [newUser, setNewUser] = useState(false);
+  // const [newUser, setNewUser] = useState(false);
   const { register, handleSubmit, errors } = useForm();
 
   const [name, setName] = useState("");

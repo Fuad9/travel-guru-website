@@ -5,7 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link, useParams } from "react-router-dom";
 import icon from "../../images/Icon/calender_icon.png";
 import places from "../fakeData/places";
-import "./Booking.css";
+import background from "../../images/Image/backGround.png";
+// import "./Booking.css";
 
 const Booking = () => {
   const { id } = useParams();
@@ -14,9 +15,18 @@ const Booking = () => {
 
   const showPlaceDetails = places.find((place) => place.id === id);
 
+  const styles = {
+    backgroundStyle: {
+      backGroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${background})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center center",
+      backgroundSize: "100% 100%",
+    },
+  };
+
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid" style={styles.backgroundStyle}>
         <div className="row">
           <div
             className="col-10 col-sm-10 col-md-5 col-lg-5"
@@ -27,7 +37,10 @@ const Booking = () => {
             </h4>
             <p style={{ fontWeight: "bold" }}>{showPlaceDetails.description}</p>
           </div>
-          <form className="col-10 col-sm-10 col-md-5 col-lg-5">
+          <form
+            className="col-10 col-sm-10 col-md-5 col-lg-5"
+            style={{ color: "white" }}
+          >
             <label htmlFor="origin">Origin</label>
             <input className="form-control" type="text" name="origin" />
             <br />

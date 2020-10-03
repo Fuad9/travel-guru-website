@@ -1,7 +1,9 @@
 const places = [
   {
     id: "cox'sBazar",
+    index: 0,
     title: "Cox's Bazar",
+    picture: "http://i.ibb.co/1vh0Q8s/Sajek.png",
     about:
       "Cox's Bazar is a city, fishing port, tourism centre and district headquarters in southeastern Bangladesh. It is famous mostly for its long natural sandy beach...",
     description:
@@ -11,7 +13,9 @@ const places = [
   },
   {
     id: "sreemangal",
+    index: 1,
     title: "Sreemangal",
+    picture: "https://i.ibb.co/fYZYWmC/Sreemongol1.png",
     about:
       "Madhobpur Lake is one of the main tourist attractions in the area, and is home to the Great White-Bellied Heron, the only confirmed site in Bangladesh. The Baikka beel is also a... ",
     description:
@@ -21,13 +25,15 @@ const places = [
   },
   {
     id: "sundarban",
+    index: 2,
     title: "Sundarban",
+    picture: "https://i.ibb.co/vYSgzYD/sundorbon.png",
     about:
       "The Sundarbans is a mangrove area in the delta formed by the confluence of the Ganges, Brahmaputra and Meghna Rivers in the Bay of Bengal. It spans from the Hooghly River in India's state of West Bengal to the Baleswar River in Bangladesh. It comprises closed and open mangrove...",
     description:
       "The Sundarbans is a mangrove area in the delta formed by the confluence of the Ganges, Brahmaputra and Meghna Rivers in the Bay of Bengal. It spans from the Hooghly River in India's state of West Bengal to the Baleswar River in Bangladesh. It comprises closed and open mangrove forests, agriculturally used land, mudflats and barren land, and is intersected by multiple tidal streams and channels. Four protected areas in the Sundarbans are enlisted as UNESCO World Heritage Sites, viz. Sundarbans National Park, Sundarbans West, Sundarbans South and Sundarbans East Wildlife Sanctuaries. Despite these protections, the Indian Sundarbans were considered endangered in a 2020 assessment under the IUCN Red List of Ecosystems framework",
-    lat: 21.57,
-    long: 89.11,
+    lat: 21.95,
+    long: 89.183,
   },
 ];
 

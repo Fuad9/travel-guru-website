@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
-import places from "../fakeData/places";
+import { Link } from "react-router-dom";
+import { PlaceContext } from "../Home/Home";
 
 const ShowPlace = () => {
-  const { id } = useParams();
+  const [placeDetails] = useContext(PlaceContext);
 
-  const place = places.find((elem) => elem.id === id);
+  const { id, title, about } = placeDetails;
 
   return (
     <div>
-      <h4>{place.title}</h4>
-      <p>{place.description}</p>
-      <Link to="/booking">
+      <h4 style={{ textTransform: "uppercase", fontSize: "3rem" }}>{title}</h4>
+      <p>{about}</p>
+      <Link to={"/booking/" + id}>
         <Button variant="warning">Booking</Button>
       </Link>
     </div>

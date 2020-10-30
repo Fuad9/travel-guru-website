@@ -2,7 +2,11 @@
 
 # Travel Guru Website
 
-This project live link is here [Click here](https://travel-guru-website.web.app/).
+Live: [Click here](https://travel-guru-website.web.app/)
+<br />
+Resume: [Click here](https://drive.google.com/file/d/1mfl4mCKZxq-pfXHjtHf1CU-Fgbjs3x5G/view?usp=sharing)
+<br />
+LinkedIn: [Click here](https://www.linkedin.com/in/irtizaalfuad/)
 
 ## About this project:
 

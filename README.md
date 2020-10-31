@@ -29,3 +29,4 @@ This is a travelling web app where three tourist spots of Bangladesh Cox's Bazar
 4. Bootstrap
 5. Material UI
 6. React Hook Form
+7. Google Map

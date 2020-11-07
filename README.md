@@ -1,12 +1,12 @@
-<img src="https://i.ibb.co/k6vM2Bw/travel.png" alt="dummy image" />
+<img src="https://i.ibb.co/nLp7jsm/travel1.png" alt="dummy image" />
 
 # Travel Guru Website
 
 Live: [Click here](https://travel-guru-website.web.app/)
 <br />
-Resume: [Click here](https://drive.google.com/file/d/1mfl4mCKZxq-pfXHjtHf1CU-Fgbjs3x5G/view?usp=sharing)
+Resume: [Click here](https://drive.google.com/file/d/1MeVsJm8yHwUXvnvfv-XBqE7Al3NxKDih/view?usp=sharing)
 <br />
-LinkedIn: [Click here](https://www.linkedin.com/in/irtizaalfuad/)
+Portfolio: [Click here](https://fuad-portfolio.netlify.app/)
 
 ## About this project:
 
